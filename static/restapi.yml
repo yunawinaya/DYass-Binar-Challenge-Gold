@@ -1,0 +1,278 @@
+---
+openapi: 3.0.3
+info:
+  title: DYass (Data Yassification) - Binar Challenge Gold
+  version: 1.3.0
+  description: Hello! Welcome to Dyass - Data Yassification! This RESTful API has
+    a function for cleaning data in the form of text and files. Created by Yuna Winaya
+    and dedicated to Binar Challenge Gold.
+  contact:
+    name: Yuna Winaya
+    email: gedeyuna@gmail.com
+    url: https://www.github.com/yunawinaya
+  license:
+    name: APACHE 2.0
+    url: htpps://www.apache.org/licenses/LICENSE-2.0
+servers:
+- description: DYass (Data Yassification)
+  url: "/"
+externalDocs:
+  description: 'Github Code: DYass - Binar Gold Challenge'
+  url: https://github.com/yunawinaya/DYass_Binar_Gold_Challenge
+tags:
+- name: Welcome Page
+  description: DYass (Data Yassification)
+- name: Text Yassification
+  description: Input text to yassify (clean)
+- name: Text Manipulation
+  description: Manipulating existing text
+- name: File Yassification
+  description: Upload file to yassify (clean)
+- name: File Manipulation
+  description: Manipulating existing text in file
+paths:
+  "/":
+    get:
+      tags:
+      - Welcome Page
+      summary: Welcome Page
+      description: Welcome to DYass!
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Misunderstood
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
+  "/text_yassification":
+    post:
+      tags:
+      - Text Yassification
+      summary: Post a text
+      description: Post a text file to yassify
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Misunderstood
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
+  "/show_text":
+    get:
+      tags:
+      - Text Yassification
+      summary: Show all texts
+      description: Text list
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Misunderstood
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
+  "/text_yassification/{text_id}":
+    get:
+      tags:
+      - Text Manipulation
+      summary: Get text by id
+      description: Get text by id from database
+      parameters:
+      - name: text_id
+        in: path
+        required: true
+        description: text_id
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Misunderstood
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
+    put:
+      tags:
+      - Text Manipulation
+      summary: Edit existing text
+      description: Edit existing text in database
+      parameters:
+      - name: text_id
+        in: path
+        required: true
+        description: text_id
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Misunderstood
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
+    delete:
+      tags:
+      - Text Manipulation
+      summary: Delete existing text
+      description: Delete existing text in database
+      parameters:
+      - name: text_id
+        in: path
+        required: true
+        description: text_id
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Misunderstood
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
+  "/file_yassification":
+    post:
+      tags:
+      - File Yassification
+      summary: Post a csv file
+      description: Post a csv file to yassify
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: base64
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Misunderstood
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
+  "/file_yassification/{text_id}":
+    get:
+      tags:
+      - File Manipulation
+      summary: Get text by id from file
+      description: Get text by id from file database
+      parameters:
+      - name: text_id
+        in: path
+        required: true
+        description: text_id
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Misunderstood
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
+    put:
+      tags:
+      - File Manipulation
+      summary: Edit existing text
+      description: Edit existing text in file database
+      parameters:
+      - name: text_id
+        in: path
+        required: true
+        description: text_id
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Misunderstood
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
+    delete:
+      tags:
+      - File Manipulation
+      summary: Delete existing text
+      description: Delete existing text in file database
+      parameters:
+      - name: text_id
+        in: path
+        required: true
+        description: text_id
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Misunderstood
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
